@@ -22,7 +22,7 @@ dataset
 │   ├── proguard_GT.txt      # groundtruth for Proguard apks        
 │   └── dasho_GT.txt         # groundtruth for Dasho apks        
 ├── apps_one_option          # contain apks obfuscated with different obfuscation options
-│   │   ├── controlflow       # apks obfuscated with Control Flow Obfuscation option         
+│   │   ├── controlflow      # apks obfuscated with Control Flow Obfuscation option         
 │   │   ├── rename           # apks obfuscated with Identifier Renaming option
 │   │   ├── remove           # apks obfuscated with Code Shrinking option
 │   │   ├── flatten          # apks obfuscated with Package Flattening option
