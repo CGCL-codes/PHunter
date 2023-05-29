@@ -159,6 +159,13 @@ Based on the Backus-Naur Form (BNF) of Jimple, we define the ExprType, Data of t
 - `String Encryption`: encrypting strings that appear in the code as meaningless strings. It protects sensitive
   information in the code, such as keys, email addresses, etc.
 
+
+### The re-implementation of BinXray
+[BinXray](https://sites.google.com/view/submission-for-issta-2020) was originally designed for C/C++ and implemented in Python.
+Fortunately, we can re-use the main code of BinXray, which differs only in pre-processing phase (i.e., extract binary instructions) while the other part of code are directly re-uesd. Specifically, we first convert TPLs from ``.jar`` to ``.dex`` using [dx](https://developer.android.com/studio/releases/platform-tools). We then utilize [Androguard](https://github.com/androguard/androguard) to extract the Dalvik instructions from TPLs (``.dex``) and the app (``.apk``).
+In BinXray' desigin, it should normalize each assembly instruction in pre-processing phase (e.g replacing indirect ``memory access`` by a symbolic term ``mem``). However, Dalvik bytecode does not have such ``memory access``. Therefore, we just extract the opcode from each Dalvik instruction such as ``invoke-direct``. This idea is as same as ATVHunter, which extracts the opcode from Dalvik instruction to construct method signature.
+The re-implemented BinXray achieves excellent results for unobfuscated apps (see Table 3), demonstrating the validity of our implementation.
+
 ### **TPL information**
 
 We crawled 4,561 open-source apps from F-Droid, a repository for open-source Android apps. By parsing the Gradle build
